@@ -22,11 +22,6 @@ keymap.set("n", "<Leader>P", '"+P', { noremap = true, silent = false, desc = "Pa
 keymap.set("i", "<C-r><C-p>", "<C-r>+", { noremap = true, silent = false, desc = "Paste from clipboard in insert mode"})
 
 -------------------------------------------
----            KEY NAVIGATION           ---
--------------------------------------------
-
-
--------------------------------------------
 ---           TEXT NAVIGATION           ---
 -------------------------------------------
 -- Leap Forward
