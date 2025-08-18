@@ -53,4 +53,16 @@ keymap.set("n", "<Leader>fg", "<cmd>Telescope live_grep<CR>", { noremap = true, 
 -- NVIM Tree
 keymap.set("n", "<Leader>e", "<cmd>NvimTreeFindFileToggle<CR>", { noremap = true, silent = true, desc = "Toggle File Exploration"})
 
+-------------------------------------------
+---            PANE KEYMAPS             ---
+-------------------------------------------
+-- Pane Navigation
+keymap.set("n", "<C-h>", "<C-w>h", { noremap = true, silent = false, desc = "Navigate to Left Pane" })
+keymap.set("n", "<C-l>", "<C-w>l", { noremap = true, silent = false, desc = "Navigate to Right Pane" })
+keymap.set("n", "<C-j>", "<C-w>j", { noremap = true, silent = false, desc = "Navigate to Bottom Pane" })
+keymap.set("n", "<C-k>", "<C-w>k", { noremap = true, silent = false, desc = "Navigate to Upper Pane" })
+
+-- Split Panes
+keymap.set("n", "<leader>|", "<cmd>vsplit<CR>", { noremap = true, silent = false, desc = "Vertical Split"})
+keymap.set("n", "<leader>_", "<cmd>split<CR>", { noremap = true, silent = false, desc = "Horizontal Split" })
 
