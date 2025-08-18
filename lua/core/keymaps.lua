@@ -27,7 +27,7 @@ keymap.set("i", "<C-r><C-p>", "<C-r>+", { noremap = true, silent = false, desc =
 -- Leap Forward
 keymap.set(
   { "n", "x", "o" }, 
-  "<Leader>f", 
+  "<Leader>lf", 
   function()
     require("leap").leap { forward = true }
   end,
@@ -36,7 +36,7 @@ keymap.set(
 -- Leap Backward
 keymap.set(
   { "n", "x", "o" },
-  "<Leader>F",
+  "<Leader>lb",
   function()
     require("leap").leap { backward = true }
   end,
