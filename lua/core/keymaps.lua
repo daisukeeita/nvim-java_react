@@ -94,3 +94,14 @@ keymap.set("n", "<C-down>", "<cmd>resize -4<CR>", {
 keymap.set("n", "<S-h>", ":bprevious<CR>", opts) -- Go to previous buffer 
 keymap.set("n", "<S-l>", ":bnext<CR>", opts) -- Go to next buffer 
 keymap.set("n", "<leader>bd", ":bp|bd #<CR>", opts) -- Delete a buffer 
+
+-------------------------------------------
+---       GITSIGNS NAVIGATION           ---
+-------------------------------------------
+keymap.set("n", "<leader>gs", ":Gitsigns stage_hunk<CR>", { noremap = true, silent = false, desc = "Gitsigns stage hunk" })
+keymap.set("n", "<leader>gu", ":Gitsigns undo_stage_hunk<CR>", { noremap = true, silent = false, desc = "Gitsigns undo stage hunk" })
+keymap.set("n", "<leader>gr", ":Gitsigns reset_hunk<CR>", { noremap = true, silent = false, desc = "Gitsigns reset stage hunk" })
+keymap.set("n", "<leader>gb", ":Gitsigns blame_line<CR>", { noremap = true, silent = false, desc = "Gitsigns blame line" })
+keymap.set("n", "<leader>gd", ":Gitsigns diffthis<CR>", { noremap = true, silent = false, desc = "Gitsigns differentiate" })
+keymap.set("n", "]c", "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", { expr = true, desc = "Gitsigns next hunk" })
+keymap.set("n", "[c", "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", { expr = true, desc = "Gitsigns previous hunk" })
