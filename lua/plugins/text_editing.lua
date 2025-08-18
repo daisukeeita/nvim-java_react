@@ -8,7 +8,7 @@ return {
      version = '*',
      opts = {
        mappings = {
-         toggle = "<Leader>tpj"
+         toggle = "<Leader>tsj"
        }
      }
    },
