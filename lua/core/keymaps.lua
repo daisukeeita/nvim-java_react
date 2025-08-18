@@ -66,3 +66,31 @@ keymap.set("n", "<C-k>", "<C-w>k", { noremap = true, silent = false, desc = "Nav
 keymap.set("n", "<leader>|", "<cmd>vsplit<CR>", { noremap = true, silent = false, desc = "Vertical Split"})
 keymap.set("n", "<leader>_", "<cmd>split<CR>", { noremap = true, silent = false, desc = "Horizontal Split" })
 
+-- Resize Panes
+keymap.set("n", "<C-left>", "<cmd>vertical resize -4<CR>", {
+  noremap = true,
+  silent = false,
+  desc = "Decrease the width of the pane"
+})
+keymap.set("n", "<C-right>", "<cmd>vertical resize +4<CR>", {
+  noremap = true,
+  silent = false,
+  desc = "Increase the width of the pane"
+})
+keymap.set("n", "<C-up>", "<cmd>resize +4<CR>", {
+  noremap = true,
+  silent = false,
+  desc = "Increase the height of the pane"
+})
+keymap.set("n", "<C-down>", "<cmd>resize -4<CR>", {
+  noremap = true,
+  silent = false,
+  desc = "Decrease the height of the pane"
+})
+
+-------------------------------------------
+---         BUFFER NAVIGATION           ---
+-------------------------------------------
+keymap.set("n", "<S-h>", ":bprevious<CR>", opts) -- Go to previous buffer 
+keymap.set("n", "<S-l>", ":bnext<CR>", opts) -- Go to next buffer 
+keymap.set("n", "<leader>bd", ":bp|bd #<CR>", opts) -- Delete a buffer 
