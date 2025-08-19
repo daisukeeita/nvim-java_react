@@ -204,3 +204,31 @@ keymap.set("n", "<F12>", function()
 	require("dap").terminate()
 end, { noremap = true, silent = true, desc = "DAP: Terminate" })
 
+-----------------------------------------------------------------
+---                        NEOTEST                            ---
+-----------------------------------------------------------------
+local neotest = require("neotest")
+
+keymap.set("n", "<leader>tt", function()
+	neotest.run.run()
+end, { desc = "Run nearest test" })
+
+keymap.set("n", "<leader>td", function()
+	neotest.run.run({ strategy = "dap" })
+end, { desc = "Debug nearest test with DAP" })
+
+keymap.set("n", "<leader>tf", function()
+	neotest.run.file()
+end, { desc = "Run file test" })
+
+keymap.set("n", "<leader>to", function()
+	neotest.output.open({ enter = true })
+end, { desc = "Show test output" })
+
+keymap.set("n", "<leader>ts", function()
+	neotest.summary.toggle()
+end, { desc = "Toggle test summary" })
+
+keymap.set("n", "<leader>tD", function()
+	neotest.run.stop()
+end, { desc = "Stop running tests" })
