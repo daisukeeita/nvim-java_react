@@ -140,3 +140,37 @@ keymap.set(
 keymap.set("n", "]c", "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", { expr = true, desc = "Gitsigns next hunk" })
 keymap.set("n", "[c", "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", { expr = true, desc = "Gitsigns previous hunk" })
 
+-------------------------------------------
+---           TROUBLE KEYMAPS           ---
+-------------------------------------------
+keymap.set("n", "<Leader>xx", "<cmd>Trouble diagnostics toggle<CR>", {
+	noremap = true,
+	silent = false,
+	desc = "Diagnostics (Trouble)",
+})
+keymap.set("n", "<Leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", {
+	noremap = true,
+	silent = false,
+	desc = "Buffer Diagnostics (Trouble)",
+})
+keymap.set("n", "<Leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>", {
+	noremap = true,
+	silent = false,
+	desc = "Symbols (Trouble)",
+})
+keymap.set("n", "<Leader>cl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", {
+	noremap = true,
+	silent = false,
+	desc = "LSP Definitions / references / ... (Trouble)",
+})
+keymap.set("n", "<Leader>xL", "<cmd>Trouble loclist toggle<cr>", {
+	noremap = true,
+	silent = false,
+	desc = "Location List (Trouble)",
+})
+keymap.set("n", "<Leader>xQ", "<cmd>Trouble qflist toggle<cr>", {
+	noremap = true,
+	silent = false,
+	desc = "Quickfix List (Trouble)",
+})
+
