@@ -174,3 +174,33 @@ keymap.set("n", "<Leader>xQ", "<cmd>Trouble qflist toggle<cr>", {
 	desc = "Quickfix List (Trouble)",
 })
 
+-------------------------------------------
+---          DEBUGGER KEYMAPS           ---
+-------------------------------------------
+keymap.set("n", "<Leader>ds", function()
+	require("lazy").load({ plugins = { "nvim-dap", "nvim-dap-ui", "nvim-dap-virtual-text" } })
+	local dap = require("dap")
+	local dapui = require("dapui")
+
+	dapui.setup()
+	require("nvim-dap-virtual-text").setup()
+
+	-- Open UI automatically
+	dap.listeners.after.event_initialized["dapui_config"] = function()
+		dapui.open()
+	end
+	dap.listeners.before.event_terminated["dapui_config"] = function()
+		dapui.close()
+	end
+	dap.listeners.before.event_exited["dapui_config"] = function()
+		dapui.close()
+	end
+
+	-- Start debugging
+	dap.continue()
+end, { noremap = true, silent = true, desc = "DAP: Start/Continue Debug" })
+
+keymap.set("n", "<F12>", function()
+	require("dap").terminate()
+end, { noremap = true, silent = true, desc = "DAP: Terminate" })
+
