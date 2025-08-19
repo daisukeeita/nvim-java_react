@@ -1,5 +1,4 @@
 local keymap = vim.keymap
-local global = vim.g
 
 -- Clear Highlight Search
 keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { noremap = true, silent = false, desc = "Clear Highlight Search" })
