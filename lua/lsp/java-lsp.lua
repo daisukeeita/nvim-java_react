@@ -69,7 +69,7 @@ local config_opt = {
 			format = {
 				enabled = true,
 				settings = {
-					url = "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+					url = home .. "/.local/share/formatters/eclipse-java-google-style.xml",
 					profile = "GoogleStyle",
 				},
 			},
