@@ -1,15 +1,19 @@
 local jdtls = require("jdtls")
 local home = os.getenv("HOME")
-local jdtls_path = "/opt/jdtls"
-local javatest_path = vim.fn.stdpath("data") .. "/mason/packages/java-test/extension"
 
+local jdtls_path = home .. "/.local/share/jdtls"
 local launcher = vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar")
 local config = jdtls_path .. "/config_linux"
 
 local workspace_dir = home .. "/.cache/jdtls/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 
+local javadebug_path = home .. "/.local/share/java-debug"
+local javatest_path = home .. "/.local/share/vscode-java-test"
 local bundles = {
-	vim.fn.glob("/opt/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"),
+	vim.fn.glob(
+		javadebug_path .. "/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar",
+		true
+	),
 }
 vim.list_extend(bundles, vim.fn.glob(javatest_path .. "/server/*.jar", true, true))
 
@@ -111,6 +115,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	pattern = "java",
 	callback = function()
 		print("Java FileType Detected.")
-		jdtls.start_or_attach(config)
+		require("jdtls").start_or_attach(config_opt)
 	end,
 })
