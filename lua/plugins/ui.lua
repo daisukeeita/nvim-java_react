@@ -6,7 +6,7 @@ return {
 		event = "VeryLazy",
 		config = function()
 			require("bufferline").setup({
-				highlights = require("catppuccin.groups.integrations.bufferline").get({
+				highlights = require("catppuccin.groups.integrations.bufferline").get_theme({
 					styles = { "italic", "bold" },
 				}),
 			})
