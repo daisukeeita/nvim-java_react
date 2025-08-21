@@ -10,3 +10,4 @@ require("core.autocmd")
 -- Load LSP Configurations
 require("lsp.lua-lsp")
 require("lsp.java-lsp")
+require("lsp.ts-lsp")
