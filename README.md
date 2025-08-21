@@ -1,7 +1,7 @@
 # Neovim Configuration
 
 Personal Neovim setup optimized for development with **Lua**,
-**TypeScript/JavaScript**, and Java.
+**TypeScript/JavaScript**, and **Java**.
 
 ## Features
 - Plugin management with [lazy.nvim](https://github.com/folke/lazy.nvim)
