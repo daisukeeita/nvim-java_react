@@ -5,6 +5,8 @@ return {
 			require("lint").linters_by_ft = {
 				lua = { "luacheck" },
 				java = { "checkstyle" },
+				javascript = { "eslint_d" },
+				typescript = { "eslint_d" },
 			}
 		end,
 	},
@@ -13,6 +15,8 @@ return {
 		opts = {
 			formatters_by_ft = {
 				lua = { "stylua" },
+				javascript = { "prettier", "prettierd" },
+				typescript = { "prettier", "prettierd" },
 			},
 		},
 	},
