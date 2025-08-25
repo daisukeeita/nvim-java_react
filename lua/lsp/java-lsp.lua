@@ -5,7 +5,7 @@ local jdtls_path = home .. "/.local/share/jdtls"
 local launcher = vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar")
 local config = jdtls_path .. "/config_linux"
 
-local workspace_dir = home .. "/.cache/jdtls/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+local lombok_path = home .. "/.local/share/lombok/lombok.jar"
 
 local javadebug_path = home .. "/.local/share/java-debug"
 local javatest_path = home .. "/.local/share/vscode-java-test"
@@ -16,6 +16,8 @@ local bundles = {
 	),
 }
 vim.list_extend(bundles, vim.fn.glob(javatest_path .. "/server/*.jar", true, true))
+
+local workspace_dir = home .. "/.cache/jdtls/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 
 local config_opt = {
 	cmd = {
@@ -31,6 +33,7 @@ local config_opt = {
 		"java.base/java.util=ALL-UNNAMED",
 		"--add-opens",
 		"java.base/java.lang=ALL-UNNAMED",
+		"-javaagent:" .. lombok_path,
 		"-jar",
 		launcher,
 		"-configuration",
