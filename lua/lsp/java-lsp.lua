@@ -33,6 +33,7 @@ local config_opt = {
 		"java.base/java.util=ALL-UNNAMED",
 		"--add-opens",
 		"java.base/java.lang=ALL-UNNAMED",
+		"-Xbootclasspath/a:" .. lombok_path,
 		"-javaagent:" .. lombok_path,
 		"-jar",
 		launcher,
