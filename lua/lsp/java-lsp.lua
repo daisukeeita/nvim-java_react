@@ -1,4 +1,5 @@
 local jdtls = require("jdtls")
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local home = os.getenv("HOME")
 
 local jdtls_path = home .. "/.local/share/jdtls"
