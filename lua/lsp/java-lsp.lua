@@ -20,6 +20,10 @@ vim.list_extend(bundles, vim.fn.glob(javatest_path .. "/server/*.jar", true, tru
 
 local workspace_dir = home .. "/.cache/jdtls/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 
+local extended_capabilities = jdtls.extendedClientCapabilities
+extended_capabilities.resolveAdditionalTextEditsSupport = true
+extended_capabilities.progressReportProvider = false
+
 local config_opt = {
 	cmd = {
 		"java",
