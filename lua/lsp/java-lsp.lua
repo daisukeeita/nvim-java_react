@@ -46,9 +46,8 @@ local config_opt = {
 		"-data",
 		workspace_dir,
 	},
-
+	capabilities = capabilities,
 	root_dir = jdtls.setup.find_root({ "gradlew", "mvnw", ".git", "pom.xml" }),
-
 	settings = {
 		java = {
 			eclipse = {
@@ -72,6 +71,16 @@ local config_opt = {
 			inlayHints = {
 				parameterNames = {
 					enabled = "all",
+				},
+			},
+			project = {
+				referencedLibraries = {
+					lombok_path,
+				},
+			},
+			compilation = {
+				annotationProcessing = {
+					enabled = true,
 				},
 			},
 			format = {
@@ -106,6 +115,7 @@ local config_opt = {
 				},
 			},
 			codeGeneration = {
+				generateComments = true,
 				toString = {
 					template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
 				},
@@ -113,9 +123,10 @@ local config_opt = {
 			},
 		},
 	},
-
 	init_options = {
+		-- jvm_args = "-javaagent:" .. lombok_path,
 		bundles = bundles,
+		extendedClientCapabilities = extended_capabilities,
 	},
 }
 
