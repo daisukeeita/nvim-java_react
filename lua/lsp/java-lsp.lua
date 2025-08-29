@@ -117,7 +117,10 @@ local config_opt = {
 			codeGeneration = {
 				generateComments = true,
 				toString = {
-					template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
+					template = "${object.className} {\n\t"
+						.. "${member.name()}: ${member.value},\n\t"
+						.. "${otherMembers}\n"
+						.. "}",
 				},
 				useBlocks = true,
 			},
