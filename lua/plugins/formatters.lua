@@ -1,12 +1,14 @@
 return {
 	{
 		"mfussenegger/nvim-lint",
-		confing = function()
+		config = function()
 			require("lint").linters_by_ft = {
 				lua = { "luacheck" },
 				java = { "checkstyle" },
 				javascript = { "eslint_d" },
 				typescript = { "eslint_d" },
+				json = { "jsonlint" },
+				markdown = { "markdownlint-cli2" },
 			}
 		end,
 	},
@@ -17,6 +19,7 @@ return {
 				lua = { "stylua" },
 				javascript = { "prettier", "prettierd" },
 				typescript = { "prettier", "prettierd" },
+				markdown = { "prettier", "markdownlint-cli2" },
 			},
 		},
 	},
