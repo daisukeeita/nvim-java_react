@@ -51,7 +51,7 @@ keymap.set(
 	"n",
 	"<Leader>e",
 	"<cmd>NvimTreeFindFileToggle<CR>",
-	{ noremap = true, silent = true, desc = "Toggle File Exploration" }
+	{ noremap = true, silent = true, desc = "File Exploration" }
 )
 
 -------------------------------------------
@@ -126,7 +126,7 @@ keymap.set("n", "]c", function()
 end, { desc = "Next Git hunk / diff change" })
 
 keymap.set("n", "[c", function()
-	if vim.wo.diff then
+	if vimwo.diff then
 		vim.cmd.normal({ "[c", bang = true })
 	else
 		require("gitsigns").nav_hunk("prev")
@@ -139,32 +139,32 @@ end, { desc = "Prev Git hunk / diff change" })
 keymap.set("n", "<Leader>xx", "<cmd>Trouble diagnostics toggle<CR>", {
 	noremap = true,
 	silent = false,
-	desc = "Diagnostics (Trouble)",
+	desc = "TROUBLE: Diagnostics",
 })
 keymap.set("n", "<Leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", {
 	noremap = true,
 	silent = false,
-	desc = "Buffer Diagnostics (Trouble)",
+	desc = "TROUBLE: Buffer Diagnostics",
 })
-keymap.set("n", "<Leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>", {
+keymap.set("n", "<Leader>xs", "<cmd>Trouble symbols toggle focus=false<cr>", {
 	noremap = true,
 	silent = false,
-	desc = "Symbols (Trouble)",
+	desc = "TROUBLE: Symbols List",
 })
-keymap.set("n", "<Leader>cl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", {
+keymap.set("n", "<Leader>xl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", {
 	noremap = true,
 	silent = false,
-	desc = "LSP Definitions / references / ... (Trouble)",
+	desc = "TROUBLE: LSP Definitions/References/Implementatios/Type Definitions",
 })
 keymap.set("n", "<Leader>xL", "<cmd>Trouble loclist toggle<cr>", {
 	noremap = true,
 	silent = false,
-	desc = "Location List (Trouble)",
+	desc = "TROUBLE: Location List",
 })
 keymap.set("n", "<Leader>xQ", "<cmd>Trouble qflist toggle<cr>", {
 	noremap = true,
 	silent = false,
-	desc = "Quickfix List (Trouble)",
+	desc = "TROUBLE: Quickfix List",
 })
 
 -------------------------------------------
@@ -225,3 +225,73 @@ end, { desc = "Toggle test summary" })
 keymap.set("n", "<leader>tD", function()
 	neotest.run.stop()
 end, { desc = "Stop running tests" })
+
+-----------------------------------------------------------------
+---                        SPLIT-JOIN                         ---
+-----------------------------------------------------------------
+keymap.set("n", "<leader>tj", function()
+	require("mini.splitjoin").toggle()
+end, { desc = "Toggle Split-Join" })
+
+-----------------------------------------------------------------
+---                        LSP ACTIONS                        ---
+-----------------------------------------------------------------
+vim.api.nvim_create_autocmd("LspAttach", {
+	desc = "LSP actions",
+	callback = function(event)
+		local opts = { buffer = event.buf, noremap = true, silent = true }
+
+		-- Navigation
+		vim.keymap.set(
+			"n",
+			"<leader>ld",
+			vim.lsp.buf.definition,
+			vim.tbl_extend("force", opts, { desc = "LSP: Definition" })
+		)
+		vim.keymap.set(
+			"n",
+			"<leader>lD",
+			vim.lsp.buf.declaration,
+			vim.tbl_extend("force", opts, { desc = "LSP: Declaration" })
+		)
+		vim.keymap.set(
+			"n",
+			"<leader>li",
+			vim.lsp.buf.implementation,
+			vim.tbl_extend("force", opts, { desc = "LSP: Implementation" })
+		)
+		vim.keymap.set(
+			"n",
+			"<leader>lo",
+			vim.lsp.buf.type_definition,
+			vim.tbl_extend("force", opts, { desc = "LSP: Type Definition" })
+		)
+		vim.keymap.set(
+			"n",
+			"<Leader>lr",
+			require("telescope.builtin").lsp_references,
+			vim.tbl_extend("force", opts, { desc = "TELESCOPE: Find References" })
+		)
+
+		-- Information
+		vim.keymap.set("n", "<Leader>lh", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "LSP: Hover" }))
+		vim.keymap.set(
+			"n",
+			"<Leader>ls",
+			vim.lsp.buf.signature_help,
+			vim.tbl_extend("force", opts, { desc = "LSP: Signature Help" })
+		)
+
+		-- Actions
+		vim.keymap.set("n", "<Leader>lR", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "LSP: Rename" }))
+		vim.keymap.set(
+			"n",
+			"<Leader>la",
+			vim.lsp.buf.code_action,
+			vim.tbl_extend("force", opts, { desc = "LSP: Code Action" })
+		)
+		vim.keymap.set({ "n", "x" }, "<Leader>lf", function()
+			vim.lsp.buf.format({ async = true })
+		end, vim.tbl_extend("force", opts, { desc = "LSP: Format" }))
+	end,
+})
