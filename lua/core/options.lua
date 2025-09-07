@@ -8,10 +8,10 @@ opt.timeout = true
 opt.timeoutlen = 1000
 
 -- Clipboard
-opt.clipboard = 'unnamedplus'
+opt.clipboard = "unnamedplus"
 
 -- Completion
-opt.completeopt = { "menu", "menuone", "noinsert", "noselect", "preview" }
+opt.completeopt = { "menu", "menuone", "noinsert", "noselect" }
 vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 
 -- Cursor Line
@@ -22,7 +22,7 @@ opt.updatetime = 250
 opt.termguicolors = true
 vim.cmd("syntax on")
 
--- Indenting 
+-- Indenting
 opt.tabstop = 2
 opt.softtabstop = 2
 opt.shiftwidth = 2
@@ -58,7 +58,7 @@ opt.textwidth = 80
 -- Title String
 opt.title = true
 
-opt.mouse = ''
+opt.mouse = ""
 
 -- background
 vim.o.background = "light"
