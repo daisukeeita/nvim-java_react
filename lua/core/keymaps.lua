@@ -13,17 +13,9 @@ keymap.set("n", "<Leader>y", '"+y', { noremap = true, silent = false, desc = "Ya
 keymap.set("n", "<Leader>Y", '"+Y', { noremap = true, silent = false, desc = "Yank line to Clipboard" })
 
 -- Paste from Clipboard
-keymap.set("v", "<Leader>p", '"+p', { noremap = true, silent = false, desc = "Paste over selection from Clipboard" })
-keymap.set("n", "<Leader>p", '"+p', { noremap = true, silent = false, desc = "Paste after from Clipboard" })
-keymap.set("n", "<Leader>P", '"+P', { noremap = true, silent = false, desc = "Paste before from Clipboard" })
-
--- Paste from Clipboard - Insert Mode
-keymap.set(
-	"i",
-	"<C-r><C-p>",
-	"<C-r>+",
-	{ noremap = true, silent = false, desc = "Paste from clipboard in insert mode" }
-)
+keymap.set("v", "<Leader>p", '"0p', { noremap = true, silent = false, desc = "Paste over selection from Clipboard" })
+keymap.set("n", "<Leader>p", '"0p', { noremap = true, silent = false, desc = "Paste after from Clipboard" })
+keymap.set("n", "<Leader>P", '"0P', { noremap = true, silent = false, desc = "Paste before from Clipboard" })
 
 -------------------------------------------
 ---           TEXT NAVIGATION           ---
@@ -102,29 +94,17 @@ keymap.set("n", "<C-down>", "<cmd>resize -4<CR>", {
 -------------------------------------------
 keymap.set("n", "<S-h>", ":bprevious<CR>", { noremap = true, silent = true, desc = "Go to previous buffer" })
 keymap.set("n", "<S-l>", ":bnext<CR>", { noremap = true, silent = true, desc = "Go to next buffer" })
-keymap.set("n", "<leader>bd", ":bp|bd #<CR>", { noremap = true, silent = false, desc = "Delete a buffer" }) -- Delete a buffer
+keymap.set("n", "<leader>bd", ":bp|bd #<CR>", { noremap = true, silent = false, desc = "Delete a buffer" })
+keymap.set(
+	"n",
+	"<leader>bD",
+	":bd|close<CR>",
+	{ noremap = true, silent = false, desc = "Delete a buffer and close the window" }
+)
 
 -------------------------------------------
 ---       GITSIGNS NAVIGATION           ---
 -------------------------------------------
-keymap.set(
-	"n",
-	"<leader>gs",
-	":Gitsigns stage_hunk<CR>",
-	{ noremap = true, silent = false, desc = "Gitsigns stage hunk" }
-)
-keymap.set(
-	"n",
-	"<leader>gu",
-	":Gitsigns undo_stage_hunk<CR>",
-	{ noremap = true, silent = false, desc = "Gitsigns undo stage hunk" }
-)
-keymap.set(
-	"n",
-	"<leader>gr",
-	":Gitsigns reset_hunk<CR>",
-	{ noremap = true, silent = false, desc = "Gitsigns reset stage hunk" }
-)
 keymap.set(
 	"n",
 	"<leader>gb",
@@ -137,8 +117,21 @@ keymap.set(
 	":Gitsigns diffthis<CR>",
 	{ noremap = true, silent = false, desc = "Gitsigns differentiate" }
 )
-keymap.set("n", "]c", "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", { expr = true, desc = "Gitsigns next hunk" })
-keymap.set("n", "[c", "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", { expr = true, desc = "Gitsigns previous hunk" })
+keymap.set("n", "]c", function()
+	if vim.wo.diff then
+		vim.cmd.normal({ "]c", bang = true })
+	else
+		require("gitsigns").nav_hunk("next")
+	end
+end, { desc = "Next Git hunk / diff change" })
+
+keymap.set("n", "[c", function()
+	if vim.wo.diff then
+		vim.cmd.normal({ "[c", bang = true })
+	else
+		require("gitsigns").nav_hunk("prev")
+	end
+end, { desc = "Prev Git hunk / diff change" })
 
 -------------------------------------------
 ---           TROUBLE KEYMAPS           ---
