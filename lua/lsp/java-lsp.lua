@@ -1,4 +1,5 @@
 local jdtls = require("jdtls")
+local navic = require("nvim-navic")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local home = os.getenv("HOME")
 
@@ -19,6 +20,12 @@ local bundles = {
 vim.list_extend(bundles, vim.fn.glob(javatest_path .. "/server/*.jar", true, true))
 
 local workspace_dir = home .. "/.cache/jdtls/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+
+local on_attach = function(client, bufnr)
+	if client.server_capabilities.documentSymbolProvider then
+		navic.attach(client, bufnr)
+	end
+end
 
 local extended_capabilities = jdtls.extendedClientCapabilities
 extended_capabilities.resolveAdditionalTextEditsSupport = true
@@ -131,6 +138,8 @@ local config_opt = {
 		bundles = bundles,
 		extendedClientCapabilities = extended_capabilities,
 	},
+
+	on_attach = on_attach,
 }
 
 vim.api.nvim_create_autocmd("FileType", {
