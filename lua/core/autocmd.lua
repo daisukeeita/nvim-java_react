@@ -12,13 +12,13 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	end,
 })
 
--- Open Diagnostic Float on Cursor
-vim.api.nvim_create_autocmd({ "CursorHold" }, {
-	group = vim.api.nvim_create_augroup("float_diagnostic_cursor", { clear = true }),
-	callback = function()
-		vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
-	end,
-})
+-- -- Open Diagnostic Float on Cursor
+-- vim.api.nvim_create_autocmd({ "CursorHold" }, {
+-- 	group = vim.api.nvim_create_augroup("float_diagnostic_cursor", { clear = true }),
+-- 	callback = function()
+-- 		vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
+-- 	end,
+-- })
 
 -- Close diagnostic float on movement or buffer/tab change
 vim.api.nvim_create_autocmd({ "CursorMoved" }, {
