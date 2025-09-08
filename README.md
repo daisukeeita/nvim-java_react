@@ -4,6 +4,7 @@ Personal Neovim setup optimized for development with **Lua**,
 **TypeScript/JavaScript**, and **Java**.
 
 ## Features
+
 - Plugin management with [lazy.nvim](https://github.com/folke/lazy.nvim)
 - LSP setup with [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 - Autocompletion via [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
