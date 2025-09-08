@@ -295,3 +295,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end, vim.tbl_extend("force", opts, { desc = "LSP: Format" }))
 	end,
 })
+
+-----------------------------------------------------------------
+---                       THEME SWITCHER                      ---
+-----------------------------------------------------------------
+local function toggle_theme()
+	if vim.o.background == "dark" then
+		vim.o.background = "light"
+		vim.cmd.colorscheme("catppuccin-latte")
+	else
+		vim.o.background = "dark"
+		vim.cmd.colorscheme("catppuccin-mocha")
+	end
+end
+vim.keymap.set("n", "<leader>ut", toggle_theme, { desc = "Toggle light/dark theme" })
