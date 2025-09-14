@@ -1,6 +1,25 @@
 return {
 	{ "ggandor/leap.nvim", opts = {} },
-	{ "nvim-tree/nvim-tree.lua", opts = {} },
+	{
+		"nvim-tree/nvim-tree.lua",
+		opts = {
+			renderer = {
+				root_folder_label = false,
+				group_empty = true,
+			},
+			view = {
+				width = 40,
+				adaptive_size = true,
+			},
+			diagnostics = {
+				enable = true,
+			},
+			filters = {
+				git_ignored = false,
+				dotfiles = false,
+			},
+		},
+	},
 	{ "folke/which-key.nvim", event = "VeryLazy", opts = {} },
 	{
 		"nvim-telescope/telescope.nvim",
