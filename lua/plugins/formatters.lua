@@ -5,8 +5,8 @@ return {
 			require("lint").linters_by_ft = {
 				lua = { "luacheck" },
 				java = { "checkstyle" },
-				javascript = { "eslint_d" },
-				typescript = { "eslint_d" },
+				javascript = { "eslint", "eslint_d" },
+				typescript = { "eslint", "eslint_d" },
 				json = { "jsonlint" },
 				markdown = { "markdownlint-cli2" },
 			}
